@@ -1,7 +1,14 @@
 package com.example.TravelApplicationSpringBoot.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="destination")
 public class Destination {
 
+    @Id
     private String destinationId;
     private String airportName;
     private String destinationName;

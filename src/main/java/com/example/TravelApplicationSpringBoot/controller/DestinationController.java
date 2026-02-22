@@ -1,34 +1,49 @@
 package com.example.TravelApplicationSpringBoot.controller;
 
 import com.example.TravelApplicationSpringBoot.model.Destination;
+import com.example.TravelApplicationSpringBoot.service.DestinationService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/destination")
 public class DestinationController {
 
-    Destination destination;
+    private final DestinationService destinationService;
+
+    public DestinationController(DestinationService destinationService) {
+        this.destinationService = destinationService;
+    }
+
+    @GetMapping
+    public List<Destination> getAllDestination() {
+        return destinationService.getAllDestination();
+    }
 
     @GetMapping("/{destinationId}")
     public Destination getDestinationDetails(@PathVariable String destinationId){
-        return destination;
+        return destinationService.getDestionation(destinationId);
     }
 
     @PostMapping
     public String createDestination(@RequestBody Destination destination){
-        this.destination=destination;
+       destinationService.createDestination(destination);
         return "Destination created succesfuly";
     }
 
-    @PutMapping
-    public String updateDestinationDetails(@RequestBody Destination destination){
-        this.destination=destination;
-        return "Destination updated succesfuly";
+    @PutMapping("/{destinationId}")
+    public String updateDestinationDetails(@PathVariable String destinationId,
+                                           @RequestBody Destination destination) {
+
+        destination.setDestinationId(destinationId);
+        destinationService.updateDestion(destination);
+        return "Destination updated successfully";
     }
 
-    @DeleteMapping
-    public String deleteDestinationDetails(String destinationId){
-        this.destination=null;
+    @DeleteMapping("/{destinationId}")
+    public String deleteDestinationDetails(@PathVariable String destinationId){
+        destinationService.deleteDestination(destinationId);
         return "Destination deleted succesfully";
     }
 
