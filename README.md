@@ -97,11 +97,3 @@ The application follows a layered architecture:
 
 Now this will render perfectly in `README.md` on GitHub ✔️
 
-If you want, we can now make it look even more professional with:
-
-* 📊 Tech Stack section
-* 🗄 Database Schema section
-* 🚀 How to Run
-* 📸 Screenshots section
-
-Tell me how serious you want this project to look on your portfolio 😄
