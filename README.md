@@ -4,7 +4,9 @@ This document provides a clear functional overview of the Travel Agency applicat
 
 📌 1. Application Overview
 
-The application is designed as a tourism management system with three main actors:
+The application is designed as a tourism management system.
+
+It includes three main actors:
 
 👤 Customer
 
@@ -18,9 +20,19 @@ Each actor has specific responsibilities and permissions within the system.
 
 A customer can:
 
-Register and log in to the platform
+Register an account
 
-Search for travel packages (by destination, period, price, number of people)
+Log in to the platform
+
+Search for travel packages:
+
+By destination
+
+By travel period
+
+By price
+
+By number of people
 
 View detailed information about a package:
 
@@ -32,7 +44,9 @@ Activities
 
 Description
 
-Make a booking and complete payment
+Make a booking
+
+Complete payment
 
 View booking history
 
@@ -42,19 +56,31 @@ Leave reviews after completing a trip
 
 A travel agent can:
 
-Create and manage travel packages
+Create travel packages
 
-View and manage customer bookings
+Edit existing travel packages
 
-Confirm or cancel reservations
+Delete travel packages
 
-Update package availability and pricing
+View customer bookings
+
+Manage reservations
+
+Confirm bookings
+
+Cancel bookings
+
+Update package availability
+
+Update pricing
 
 🛠 Administrator Functionalities
 
 An administrator can:
 
-Manage users and roles
+Manage users
+
+Manage roles and permissions
 
 View system statistics:
 
