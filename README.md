@@ -1,8 +1,3 @@
-Aaa, got it 😄 You want proper **Markdown formatting for README**, with `#`, `##`, and `-` bullets correctly structured.
-
-Here it is, clean and correctly formatted for GitHub:
-
----
 
 # 🌍 Spring Boot Travel Agency Application – Business Analysis
 
