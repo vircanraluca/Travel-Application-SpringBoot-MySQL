@@ -93,7 +93,5 @@ The application follows a layered architecture:
 * Repository Layer
 * Entity (Model) Layer
 
----
 
-Now this will render perfectly in `README.md` on GitHub ✔️
 
