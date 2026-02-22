@@ -3,45 +3,39 @@ package com.example.TravelApplicationSpringBoot.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public class Role {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated
-    @Column(nullable = false, unique = true,length = 20)
+    // Mapăm ENUM-ul din MySQL cu ENUM-ul din Java
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true, length = 20)
     private RoleName name;
 
-    public Role(){
-
+    // ── Enum ──────────────────────────────────────────────────
+    public enum RoleName {
+        CLIENT, AGENT, ADMIN
     }
+
+    // ── Constructori ──────────────────────────────────────────
+    public Role() {}
 
     public Role(RoleName name) {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
-    }
+    // ── Getters & Setters ─────────────────────────────────────
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public RoleName getName() {
-        return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
-    }
+    public RoleName getName() { return name; }
+    public void setName(RoleName name) { this.name = name; }
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name=" + name +
-                '}';
+        return "Role{id=" + id + ", name=" + name + "}";
     }
 }

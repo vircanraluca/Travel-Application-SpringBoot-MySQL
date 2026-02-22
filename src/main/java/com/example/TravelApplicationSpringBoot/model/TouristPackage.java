@@ -1,18 +1,17 @@
 package com.example.TravelApplicationSpringBoot.model;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="tourist_packages")
+@Table(name = "tourist_packages")
 public class TouristPackage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 200)
@@ -21,24 +20,24 @@ public class TouristPackage {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    //o destinatie are mai multe pachete (poate fi)
+    // FK → destinations
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="destination_id",nullable = false)
+    @JoinColumn(name = "destination_id", nullable = false)
     private Destination destination;
 
-    //un hotel poate avea (fi) in mai multe pachete
+    // FK → hotels
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="hotel_id",nullable = false)
+    @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;
 
-    @Column(name="start_date",nullable = false)
+    @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(name="end_date", nullable = false)
+    @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
-    @Column(name="duration_days", nullable = false)
-    private int durationDays;
+    @Column(name = "duration_days", nullable = false)
+    private Integer durationDays;
 
     // DECIMAL(10,2) → BigDecimal în Java (nu float/double – pierderi de precizie!)
     @Column(name = "price_per_person", nullable = false, precision = 10, scale = 2)
@@ -59,22 +58,28 @@ public class TouristPackage {
     @Column(name = "includes_meals", nullable = false)
     private Boolean includesMeals = false;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private  PackageStatus status=PackageStatus.ACTIVE;
+    private PackageStatus status = PackageStatus.ACTIVE;
 
     // FK → users (agentul care a creat pachetul)
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="created_by", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
 
-    //un pachet are mai multe rezervari
+    // Un pachet are mai multe rezervări
     @OneToMany(mappedBy = "touristPackage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Reservation> reservations=new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
-    //un pachet are mai multe recenzii
+    // Un pachet are mai multe recenzii
     @OneToMany(mappedBy = "touristPackage", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Review> reviews=new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+
+    // ── Enum Status ───────────────────────────────────────────
+    public enum PackageStatus {
+        ACTIVE, INACTIVE, SOLD_OUT
+    }
+
     // ── Constructori ──────────────────────────────────────────
     public TouristPackage() {}
 
@@ -137,5 +142,4 @@ public class TouristPackage {
     public String toString() {
         return "TouristPackage{id=" + id + ", name='" + name + "', status=" + status + "}";
     }
-
 }
